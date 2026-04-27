@@ -147,20 +147,22 @@ if stock_seleccionado:
     fig, ax = plt.subplots(figsize=(13, 5))
     ax.plot(df_rendimientos.index, df_rendimientos[stock_seleccionado], label=stock_seleccionado)
     ax.axhline(y=0, color='r', linestyle='--', alpha=0.7)
-    ax.legend()
     ax.set_title(f"Rendimientos de {stock_seleccionado}")
     ax.set_xlabel("Fecha")
     ax.set_ylabel("Rendimiento Diario")
+    ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+    ax.grid(True, alpha=0.2, color='white')
     st.pyplot(fig)
     # Histograma de rendimientos
     st.subheader("Distribución de Rendimientos")
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.hist(df_rendimientos[stock_seleccionado], bins=30, alpha=0.7, color='blue', edgecolor='black')
     ax.axvline(rendimiento_medio, color='red', linestyle='dashed', linewidth=2, label=f"Promedio: {rendimiento_medio:.4%}")
-    ax.legend()
     ax.set_title("Histograma de Rendimientos")
     ax.set_xlabel("Rendimiento Diario")
     ax.set_ylabel("Frecuencia")
+    ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+    ax.grid(True, alpha=0.2, color='white')
     st.pyplot(fig)
 
     distribucion_seleccionada = st.selectbox("Selecciona una distribución", distribuciones)
@@ -230,7 +232,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
@@ -265,7 +268,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
@@ -300,7 +304,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
@@ -369,7 +374,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
@@ -404,7 +410,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
@@ -439,7 +446,8 @@ if stock_seleccionado:
             ax.set_title("Histograma de Rendimientos con VaR y CVaR", fontsize=14, fontweight='bold',color='#00d4ff',fontfamily='monospace',pad=20)
             ax.set_xlabel("Rendimiento Diario", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
             ax.set_ylabel("Frecuencia", fontsize=11, color='#8892b0',fontfamily='monospace',fontweight='bold')
-            ax.legend()
+            ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+            ax.grid(True, alpha=0.2, color='white')
 
             # Mostrar la figura en Streamlit
             st.pyplot(fig)
