@@ -485,3 +485,16 @@ if stock_seleccionado:
     
     # Mostrar la figura
     st.pyplot(fig)
+
+    st.subheader("Evaluación de Violaciones del VaR")
+    contador = 0
+    for i in range(len(df_rendimientos[stock_seleccionado])):
+        if df_rendimientos[stock_seleccionado].iloc[i+1] < hVaR_95_rolling.iloc[i]:
+            contador += 1
+    # Calcular porcentaje de violaciones
+    porcentaje_violaciones = (contador / len(df_rendimientos[stock_seleccionado])) * 100
+
+    col1, col2, col3= st.columns(3)
+    col1.metric("Violaciones", f"{contador}")
+    col2.metric("Porcentaje de Violaciones", f"{porcentaje_violaciones:.2f}%")
+    col3.metric("Total de Días", f"{len(df_rendimientos[stock_seleccionado])}")
