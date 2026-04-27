@@ -108,7 +108,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("Visualización de Rendimientos de Acciones")
-st.header("Media, Kurtosisis y Sesgo")
+st.header("Media, Kurtosis y Sesgo")
 
 @st.cache_data
 def obtener_datos(stocks):
