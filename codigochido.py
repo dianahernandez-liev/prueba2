@@ -486,10 +486,45 @@ if stock_seleccionado:
     # Mostrar la figura
     st.pyplot(fig)
 
+    # Calcular porcentaje de violaciones
+    porcentaje_violaciones = (contador / len(df_rendimientos[stock_seleccionado])) * 100
+
+    col1, col2, col3= st.columns(3)
+    col1.metric("Violaciones", f"{contador}")
+    col2.metric("Porcentaje de Violaciones", f"{porcentaje_violaciones:.2f}%")
+    col3.metric("Total de Días", f"{len(df_rendimientos[stock_seleccionado])}")
+
+    #99%
+    st.subheader("VaR 99% Rolling")
+    # VaR 99% Rolling Paramétrico
+    VaR_99_rolling = norm.ppf(1-0.99, rolling_mean, rolling_std)
+    VaR_99_rolling_percent = VaR_99_rolling * 100
+    
+    # VaR 99% Rolling Histórico
+    hVaR_99_rolling = df_rendimientos[stock_seleccionado].rolling(window=252).quantile(0.01)
+    hVaR_99_rolling_percent = hVaR_99_rolling * 100
+
+    # Crear la figura y el eje
+    fig, ax = plt.subplots(figsize=(13, 5), facecolor='#0a0e27')
+    ax.set_facecolor('#0f142e')
+    ax.plot(df_rendimientos[stock_seleccionado].index, df_rendimientos[stock_seleccionado] * 100, label='Retornos diarios (%)', color='#34edf3', alpha=0.5)
+
+    
+    ax.plot(df_rendimientos.index, hVaR_99_rolling_percent, label='99% Rolling VaR Histórico', color='#00ff88', linewidth=2)
+    ax.plot(df_rendimientos.index, VaR_99_rolling_percent, label='99% Rolling VaR Paramétrico', color="#440351", linewidth=2)
+    #Configurar etiquetas y leyenda
+    ax.set_title(f'99% Rolling VaR - {stock_seleccionado}', fontsize=14, fontweight='bold', color='#00d4ff', fontfamily='monospace', pad=20)
+    ax.set_xlabel('Fecha', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
+    ax.set_ylabel('VaR (%)', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
+    ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+    ax.grid(True, alpha=0.2, color='white')
+    # Mostrar la figura
+    st.pyplot(fig)
+
     st.subheader("Evaluación de Violaciones del VaR")
     contador = 0
     for i in range(len(df_rendimientos[stock_seleccionado])):
-        if df_rendimientos[stock_seleccionado].iloc[i] < hVaR_95_rolling.iloc[i]:
+        if df_rendimientos[stock_seleccionado].iloc[i] < hVaR_99_rolling.iloc[i]:
             contador += 1
     # Calcular porcentaje de violaciones
     porcentaje_violaciones = (contador / len(df_rendimientos[stock_seleccionado])) * 100
