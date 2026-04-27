@@ -446,32 +446,32 @@ if stock_seleccionado:
 
 
         
-        ### ROLLING WINDOWS
-        st.header("Rolling Windows VaR")
-        # Calcular rolling windows SOLO para la acción seleccionada
-        rolling_mean = df_rendimientos[stock_seleccionado].rolling(window=252).mean()
-        rolling_std = df_rendimientos[stock_seleccionado].rolling(window=252).std()
-        
-        # VaR 95% Rolling Paramétrico
-        VaR_95_rolling = norm.ppf(1-0.95, rolling_mean, rolling_std)
-        VaR_95_rolling_percent = VaR_95_rolling * 100
-        
-        # VaR 95% Rolling Histórico
-        hVaR_95_rolling = df_rendimientos[stock_seleccionado].rolling(window=252).quantile(0.05)
-        hVaR_95_rolling_percent = hVaR_95_rolling * 100
+    ### ROLLING WINDOWS
+    st.header("Rolling Windows VaR")
+    # Calcular rolling windows SOLO para la acción seleccionada
+    rolling_mean = df_rendimientos[stock_seleccionado].rolling(window=252).mean()
+    rolling_std = df_rendimientos[stock_seleccionado].rolling(window=252).std()
+    
+    # VaR 95% Rolling Paramétrico
+    VaR_95_rolling = norm.ppf(1-0.95, rolling_mean, rolling_std)
+    VaR_95_rolling_percent = VaR_95_rolling * 100
+    
+    # VaR 95% Rolling Histórico
+    hVaR_95_rolling = df_rendimientos[stock_seleccionado].rolling(window=252).quantile(0.05)
+    hVaR_95_rolling_percent = hVaR_95_rolling * 100
 
-        # Crear la figura y el eje
-        fig, ax = plt.subplots(figsize=(13, 5), facecolor='#0a0e27')
-        ax.set_facecolor('#0f142e')
-        
-        ax.plot(df_rendimientos.index, hVaR_95_rolling_percent, label='95% Rolling VaR Histórico', color='#00ff88', linewidth=2)
-        ax.plot(df_rendimientos.index, VaR_95_rolling_percent, label='95% Rolling VaR Paramétrico', color='#00d4ff', linewidth=2)
-        #Configurar etiquetas y leyenda
-        ax.set_title(f'95% Rolling VaR - {stock_seleccionado}', fontsize=14, fontweight='bold', color='#00d4ff', fontfamily='monospace', pad=20)
-        ax.set_xlabel('Fecha', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
-        ax.set_ylabel('VaR (%)', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
-        ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
-        ax.grid(True, alpha=0.2, color='white')
-        
-        # Mostrar la figura
-        st.pyplot(fig)
+    # Crear la figura y el eje
+    fig, ax = plt.subplots(figsize=(13, 5), facecolor='#0a0e27')
+    ax.set_facecolor('#0f142e')
+    
+    ax.plot(df_rendimientos.index, hVaR_95_rolling_percent, label='95% Rolling VaR Histórico', color='#00ff88', linewidth=2)
+    ax.plot(df_rendimientos.index, VaR_95_rolling_percent, label='95% Rolling VaR Paramétrico', color='#00d4ff', linewidth=2)
+    #Configurar etiquetas y leyenda
+    ax.set_title(f'95% Rolling VaR - {stock_seleccionado}', fontsize=14, fontweight='bold', color='#00d4ff', fontfamily='monospace', pad=20)
+    ax.set_xlabel('Fecha', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
+    ax.set_ylabel('VaR (%)', fontsize=11, color='#8892b0', fontfamily='monospace', fontweight='bold')
+    ax.legend(loc='upper left', facecolor='#0f142e', edgecolor='#00d4ff')
+    ax.grid(True, alpha=0.2, color='white')
+    
+    # Mostrar la figura
+    st.pyplot(fig)
