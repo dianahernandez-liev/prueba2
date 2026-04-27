@@ -471,6 +471,8 @@ if stock_seleccionado:
     # Crear la figura y el eje
     fig, ax = plt.subplots(figsize=(13, 5), facecolor='#0a0e27')
     ax.set_facecolor('#0f142e')
+
+    n, bins, patches = ax.hist(df_rendimientos[stock_seleccionado], bins=50, color='blue', alpha=0.7, label='Retornos')
     
     ax.plot(df_rendimientos.index, hVaR_95_rolling_percent, label='95% Rolling VaR Histórico', color='#00ff88', linewidth=2)
     ax.plot(df_rendimientos.index, VaR_95_rolling_percent, label='95% Rolling VaR Paramétrico', color='#00d4ff', linewidth=2)
